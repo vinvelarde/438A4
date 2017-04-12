@@ -13,7 +13,7 @@ April 2017
 
 ## Functionality Overview:
 ### Server Code - fbsd.cpp:
-Starts server and waits for client input. (Server from HW2)
+Starts server and waits for client input.
 - \<text>
 
 ### etc... 
