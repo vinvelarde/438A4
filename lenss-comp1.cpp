@@ -47,9 +47,13 @@ class masterServer final : public Tweeter::Service {
 	Status Welcome(ServerContext* context, const HW2::User* user,
 					SendMsg* welcome) override {
 		/*
+		// CHECK IF USER IS A WORKER
+		// 	- if user is a worker, add them to a vector?
+		// 	- and maybe open a connection for client style messeging (to check if it's alive later)
+		*/
 		
-		ASSIGN NEW CLIENTS TO WORKERS
-		
+		/*
+		// ASSIGN NEW CLIENTS TO WORKERS
 		*/
 		
 		welcome->set_message("server message (worker assignment)");
@@ -71,7 +75,6 @@ void runServer(std::string p) {
 	builder.RegisterService(&service);
 	std::unique_ptr<Server> server(builder.BuildAndStart());
 	std::cout << "Server listening on " << server_address << std::endl;
-	service.getUserList();
 	
 	server->Wait();
 }
