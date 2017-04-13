@@ -24,12 +24,15 @@ PROTOS_PATH = ./
 
 vpath %.proto $(PROTOS_PATH)
 
-all: client master
+all: client master worker
 
 client: fb.pb.o fb.grpc.pb.o fbc.o
 	$(CXX) $^ $(LDFLAGS) -o $@
 
 master: fb.pb.o fb.grpc.pb.o lenss-comp1.o
+	$(CXX) $^ $(LDFLAGS) -o $@
+	
+worker: fb.pb.o fb.grpc.pb.o worker.o
 	$(CXX) $^ $(LDFLAGS) -o $@
 
 .PRECIOUS: %.grpc.pb.cc
@@ -41,4 +44,4 @@ master: fb.pb.o fb.grpc.pb.o lenss-comp1.o
 	$(PROTOC) -I $(PROTOS_PATH) --cpp_out=. $<
 
 clean:
-	rm -f *.o *.pb.cc *.pb.h client master UserList.txt
+	rm -f *.o *.pb.cc *.pb.h client master worker UserList.txt
